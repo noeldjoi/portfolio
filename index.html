@@ -120,7 +120,7 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 8rem 4rem 4rem;
+      padding: 8rem 4rem 6rem;
       position: relative;
       overflow: hidden;
     }
@@ -163,6 +163,7 @@
       position: relative;
       z-index: 1;
       max-width: 800px;
+      width: 100%;
     }
 
     .hero-tag {
@@ -186,6 +187,7 @@
       width: 6px; height: 6px;
       background: var(--accent);
       border-radius: 50%;
+      flex-shrink: 0;
       animation: pulse 2s infinite;
     }
 
@@ -196,9 +198,9 @@
 
     .hero h1 {
       font-family: var(--font-head);
-      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-size: clamp(2.2rem, 7vw, 5.5rem);
       font-weight: 800;
-      line-height: 1.05;
+      line-height: 1.08;
       letter-spacing: -.02em;
       margin-bottom: 1.5rem;
       animation: fadeUp .9s .1s ease both;
@@ -208,7 +210,7 @@
     .hero h1 .role { color: var(--text); }
 
     .hero-desc {
-      font-size: 1.1rem;
+      font-size: clamp(.95rem, 2.5vw, 1.1rem);
       color: var(--muted);
       max-width: 560px;
       margin-bottom: 2.5rem;
@@ -264,7 +266,7 @@
     /* scroll indicator */
     .scroll-hint {
       position: absolute;
-      bottom: 2.5rem;
+      bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -276,6 +278,8 @@
       color: var(--muted);
       letter-spacing: .1em;
       animation: fadeUp 1.2s .6s ease both, bounce 2s 2s infinite;
+      z-index: 2;
+      white-space: nowrap;
     }
     .scroll-hint svg { opacity: .5; }
     @keyframes bounce {
@@ -742,8 +746,30 @@
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
 
-      .hero, section { padding: 5rem 1.5rem; }
-      .hero { padding-top: 7rem; }
+      /* Hero responsive */
+      .hero {
+        padding: 7rem 1.5rem 5rem;
+        align-items: flex-start;
+        padding-top: 6rem;
+      }
+      .hero-inner { max-width: 100%; }
+      .hero h1 { font-size: clamp(2rem, 9vw, 3rem); line-height: 1.1; }
+      .hero-tag { font-size: .7rem; }
+      .hero-desc { font-size: .95rem; max-width: 100%; }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .hero-actions .btn {
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+      }
+      .blob-1 { width: 300px; height: 300px; top: -50px; right: -80px; }
+      .blob-2 { width: 250px; height: 250px; bottom: -40px; left: -60px; }
+      .scroll-hint { display: none; }
+
+      section { padding: 5rem 1.5rem; }
 
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .skills-categories { grid-template-columns: 1fr; }
@@ -751,7 +777,17 @@
       .project-card.featured { grid-column: span 1; flex-direction: column; }
       .project-card.featured .project-visual { width: 100%; }
 
-      footer { flex-direction: column; gap: .5rem; text-align: center; }
+      footer { flex-direction: column; gap: .5rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 5.5rem 1.2rem 4rem; }
+      .hero h1 { font-size: clamp(1.8rem, 10vw, 2.5rem); }
+      .about-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .stat-card { padding: 1rem; }
+      .stat-number { font-size: 1.8rem; }
+      .contact-links { flex-direction: column; }
+      .contact-link { justify-content: center; }
     }
   </style>
 </head>
@@ -778,7 +814,7 @@
       <div class="hero-tag">Disponible pour des opportunités</div>
 
       <h1>
-        <span class="name">Noël DJOÏ</span>
+        <span class="name">Votre Prénom Nom</span>
         <span class="role">Développeur Web &<br>Technicien IT/Networking</span>
       </h1>
 
